@@ -3,6 +3,9 @@ package org.example;
 
 import org.springframework.context.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @ComponentScan("org.example")
 @Configuration
 public class Main {
@@ -10,6 +13,17 @@ public class Main {
     private static AnnotationConfigApplicationContext applicationContext;
 
 
+    //PostConstruct PreDestroy
+    @PostConstruct
+    protected void init(){
+        System.out.println("Wash hands before work");
+    }
+
+    @PreDestroy
+    protected void cleanup(){
+        System.out.println("Check if all cages are closed");
+        System.out.println("Who let the dogs out?");
+    }
 
     public static void main(String[] args) {
         //applicationContext = new ClassPathXmlApplicationContext("aplicationContext.xml");
@@ -27,6 +41,7 @@ public class Main {
         gorilla.feed("Banana");
 
         System.out.println(theZookeeper.getFood(3));
+        System.out.println("\n");
 
         Zooworker theZookeeper2 = applicationContext.getBean("theZookeeper", Zookeeper.class);
         Zooworker theFeeder2 = applicationContext.getBean("Feeder", Feeder.class);
@@ -34,5 +49,11 @@ public class Main {
 
         System.out.println(theZookeeper + " " + theZookeeper3);
         System.out.println(theZookeeper2 + " " + theFeeder2);
+
+
+
+
     }
+
+
 }
