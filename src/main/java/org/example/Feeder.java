@@ -9,4 +9,12 @@ public class Feeder implements Zooworker {
     public boolean cleanup(String s) {
         return false;
     }
+
+    @Override
+    public String getFood(int quantityKg) {
+         return "Food" + quantityKg;
+    }
+
+
 }
+
